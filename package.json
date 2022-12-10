@@ -1,5 +1,5 @@
 {
-  "name": "basic-sockets",
+  "name": "basic-chat-sockets",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
