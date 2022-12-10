@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
 import { AppComponent } from './app.component';
-import { ChatComponent } from './components/chat/chat.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     BrowserModule,
     SocketIoModule.forRoot(config),
+    AppRoutingModule,
     FooterComponent,
-    ChatComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

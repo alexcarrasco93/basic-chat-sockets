@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { Message } from '../interfaces/message';
+import { User } from '../interfaces/user';
 import { WebsocketService } from './websocket.service';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class ChatService {
 
   sendMessage(msg: string) {
     const payload: Message = {
-      from: 'Alex',
+      from: this.wsService.getUser()!.name,
       msg,
     };
 
@@ -28,5 +29,17 @@ export class ChatService {
 
   getMessages() {
     return this.wsService.listen<Message>('new-message');
+  }
+
+  getPrivateChatMessages() {
+    return this.wsService.listen<Message>('private-message');
+  }
+
+  getActiveUsers() {
+    return this.wsService.listen<User[]>('active-users');
+  }
+
+  emitActiveUsers() {
+    this.wsService.emit('emit-users');
   }
 }
