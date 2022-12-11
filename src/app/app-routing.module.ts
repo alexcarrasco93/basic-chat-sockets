@@ -9,14 +9,22 @@ const routes: Routes = [
       import('./pages/login/login.component').then((mod) => mod.LoginComponent),
   },
   {
-    path: 'messages',
+    path: 'chat',
     loadComponent: () =>
       import('./pages/messages/messages.component').then(
         (mod) => mod.MessagesComponent
       ),
     canActivate: [UserGuard],
   },
-  { path: '', redirectTo: '/messages', pathMatch: 'full' },
+  {
+    path: 'graphic',
+    loadComponent: () =>
+      import('./pages/graphic/graphic.component').then(
+        (mod) => mod.GraphicComponent
+      ),
+    canActivate: [UserGuard],
+  },
+  { path: '', redirectTo: '/chat', pathMatch: 'full' },
   {
     path: '**',
     loadComponent: () =>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from '../environments/environment';
@@ -16,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserModule,
     SocketIoModule.forRoot(config),
     AppRoutingModule,
+    HttpClientModule,
     FooterComponent,
   ],
   providers: [],

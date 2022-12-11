@@ -20,7 +20,7 @@ export class LoginComponent {
     if (this.name) {
       this.wsService
         .loginWS(this.name)
-        .then(() => this.router.navigateByUrl('/messages'));
+        .then(() => this.router.navigateByUrl('/chat'));
     }
   }
 }
