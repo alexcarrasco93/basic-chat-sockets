@@ -24,6 +24,14 @@ const routes: Routes = [
       ),
     canActivate: [UserGuard],
   },
+  {
+    path: 'map',
+    loadChildren: () =>
+      import('./pages/map/map.module').then(
+        (mod) => mod.MapModule
+      ),
+    canActivate: [UserGuard],
+  },
   { path: '', redirectTo: '/chat', pathMatch: 'full' },
   {
     path: '**',

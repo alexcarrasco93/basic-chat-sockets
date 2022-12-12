@@ -1,0 +1,6 @@
+<app-navbar></app-navbar>
+<div class="map-container">
+  <button (click)="createMarker()">Create marker</button>
+  <mgl-map #map [style]="'mapbox://styles/mapbox/streets-v9'" [zoom]="[15.8]" [center]="center">
+  </mgl-map>
+</div>
