@@ -22,3 +22,32 @@ footer {
 .chat-input {
   margin-top: 10px;
 }
+
+table {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.ticket-actual {
+  background-color: #282828;
+}
+
+.ticket-actual-number {
+  font-size: 80px;
+}
+
+.ticket-actual-desktop {
+  font-size: 45px;
+}
+
+.ticket-secondary {
+  font-size: 25px;
+}
+
+
+/* Nuevo-ticket */
+
+#lblNewTicket {
+  font-size: 70px;
+}

@@ -32,11 +32,28 @@ const routes: Routes = [
       ),
     canActivate: [UserGuard],
   },
+  {
+    path: 'cues/:screen',
+    loadComponent: () =>
+      import('./pages/cues/cues.component').then(
+        (mod) => mod.CuesComponent
+      ),
+    canActivate: [UserGuard],
+  },
+  {
+    path: 'cues/:screen/:desktop',
+    loadComponent: () =>
+      import('./pages/cues/cues.component').then(
+        (mod) => mod.CuesComponent
+      ),
+    canActivate: [UserGuard],
+  },
   { path: '', redirectTo: '/chat', pathMatch: 'full' },
+  { path: 'cues', redirectTo: '/cues/home', pathMatch: 'full' },
   {
     path: '**',
     loadComponent: () =>
-      import('./pages/login/login.component').then((mod) => mod.LoginComponent),
+      import('./pages/messages/messages.component').then((mod) => mod.MessagesComponent),
   },
 ];
 

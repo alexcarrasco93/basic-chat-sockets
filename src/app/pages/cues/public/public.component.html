@@ -1,0 +1,20 @@
+<table>
+  <tr>
+      <td valign="middle" class="ticket-actual">
+          <span id="lblTicket1" class="ticket-actual-number">Ticket {{lastTicket?.id}}</span>
+          <br>
+          <span id="lblDesktop1" class="ticket-actual-desktop">Desktop {{lastTicket?.desktop}}</span>
+      </td>
+      <td>
+          <table>
+              <tr *ngFor="let ticket of previousTickets">
+                  <td>
+                      <span id="lblTicket2" class="ticket-secondary">Ticket {{ticket.id}}</span>
+                      <br>
+                      <span id="lblDesktop2">Desktop {{ticket.desktop}}</span>
+                  </td>
+              </tr>
+          </table>
+      </td>
+  </tr>
+</table>

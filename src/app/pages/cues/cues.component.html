@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div class="cues-container" [class.p-4]="screen !== 'public'">
+  <ng-container *ngTemplateOutlet="screen === 'desktop' ? desktopTmpl :
+                       screen === 'home' ? homeTmpl :
+                       screen === 'new-ticket' ? newTicketTmpl :
+                       screen === 'public' ? publicTmpl :
+                       notFoundTmpl"></ng-container>
+
+  <ng-template #desktopTmpl>
+    <app-desktop *ngIf="screen === 'desktop'" [tickets]="(ticketsToAttend$ | async)!" [desktop]="desktop"
+      (attend)="attendTicket($event)"></app-desktop>
+  </ng-template>
+  <ng-template #homeTmpl>
+    <app-home></app-home>
+  </ng-template>
+  <ng-template #newTicketTmpl>
+    <app-new-ticket [tickets]="(ticketsToAttend$ | async)!" (newTicket)="createNewTicket()"></app-new-ticket>
+  </ng-template>
+  <ng-template #publicTmpl>
+    <app-public [tickets]="(attendingTickets$ | async)!"></app-public>
+  </ng-template>
+  <ng-template #notFoundTmpl>
+    not found
+  </ng-template>
+</div>

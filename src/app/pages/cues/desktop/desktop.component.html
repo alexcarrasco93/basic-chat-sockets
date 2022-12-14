@@ -1,0 +1,9 @@
+<h1>Desktop</h1>
+<h4 *ngIf="tickets?.length === 0">There are no tickets to attend</h4>
+<h4 *ngIf="currentTicket">Attending to <small>{{currentTicket.id}}</small></h4>
+<h4 *ngIf="!currentTicket && tickets?.length !== 0">Click the button to attend a ticket</h4>
+<hr>
+
+<button class="btn btn-primary btn-lg" [disabled]="tickets && tickets.length === 0" (click)="attendToTicket()">
+    Attend the next ticket
+</button>
