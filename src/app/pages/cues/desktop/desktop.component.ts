@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ticket } from '../../../interfaces/ticket';
+import { TicketsService } from '../../../services/tickets.service';
 
 @Component({
   selector: 'app-desktop',
@@ -19,6 +20,12 @@ export class DesktopComponent {
   attend = new EventEmitter<{ ticket: Ticket; attendedId?: number }>();
 
   currentTicket?: Ticket;
+
+  constructor(private ticketsService: TicketsService) {}
+
+  ngOnInit() {
+    this.ticketsService.emitGetTicketsToAttend();
+  }
 
   attendToTicket() {
     const ticketToAttend = this.tickets[0];

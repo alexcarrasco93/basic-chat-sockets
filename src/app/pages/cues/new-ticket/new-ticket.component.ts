@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ticket } from '../../../interfaces/ticket';
+import { TicketsService } from '../../../services/tickets.service';
 
 @Component({
   selector: 'app-new-ticket',
@@ -9,7 +10,7 @@ import { Ticket } from '../../../interfaces/ticket';
   templateUrl: './new-ticket.component.html',
   styleUrls: ['./new-ticket.component.css'],
 })
-export class NewTicketComponent {
+export class NewTicketComponent implements OnInit {
   @Input()
   tickets: Ticket[] = [];
 
@@ -18,6 +19,12 @@ export class NewTicketComponent {
 
   get lastTicket() {
     return this.tickets[this.tickets.length - 1];
+  }
+
+  constructor(private ticketsService: TicketsService) {}
+
+  ngOnInit() {
+    this.ticketsService.emitGetTicketsToAttend();
   }
 
   createNewTicket() {

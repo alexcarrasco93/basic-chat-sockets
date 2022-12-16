@@ -8,7 +8,6 @@ import { WebsocketService } from './websocket.service';
 })
 export class TicketsService {
   constructor(private wsService: WebsocketService) {
-    this.emitGetTicketsToAttend();
     this.emitGetAttendingTickets();
   }
 
@@ -47,7 +46,6 @@ export class TicketsService {
 
   attendingTickets$ = this._attendingTickets$.pipe(
     mergeMap(() => this.attendingTicketsSocket$),
-    tap((res) => console.log('attendingTickets$', res)),
     shareReplay(1)
   );
 }

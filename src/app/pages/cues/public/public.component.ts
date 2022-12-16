@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ticket } from '../../../interfaces/ticket';
 import { TicketsService } from '../../../services/tickets.service';
@@ -10,7 +16,7 @@ import { TicketsService } from '../../../services/tickets.service';
   templateUrl: './public.component.html',
   styleUrls: ['./public.component.css'],
 })
-export class PublicComponent implements OnInit {
+export class PublicComponent implements OnInit, OnChanges {
   @Input()
   tickets: Ticket[] = [];
 
@@ -28,5 +34,26 @@ export class PublicComponent implements OnInit {
 
   ngOnInit(): void {
     this.ticketsService.emitGetAttendingTickets();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const tickets: Ticket[] = changes['tickets']?.currentValue;
+    const ticketsPrevious: Ticket[] = changes['tickets']?.previousValue;
+    const isFirstChange = changes['tickets'].firstChange;
+    if (
+      !isFirstChange &&
+      ticketsPrevious &&
+      JSON.stringify(ticketsPrevious) !== JSON.stringify(tickets)
+    ) {
+      this.playAudio();
+    }
+  }
+
+  private playAudio() {
+    let audio = new Audio();
+    audio.src = '../../../../assets/audio/new-ticket.mp3';
+    audio.autoplay = true;
+    audio.load();
+    audio.play();
   }
 }
