@@ -6,7 +6,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
-const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
+const config: SocketIoConfig = { url: environment.socketsUrl, options: {} };
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
