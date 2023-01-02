@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { BehaviorSubject, map, mergeMap, shareReplay } from 'rxjs';
 import { Message } from '../interfaces/message';
 import { User } from '../interfaces/user';
 import { WebsocketService } from './websocket.service';
@@ -9,11 +9,16 @@ import { WebsocketService } from './websocket.service';
 })
 export class ChatService {
   private messages: Message[] = [];
-  messages$ = this.getMessages().pipe(
+  private _messages$ = new BehaviorSubject<void>(undefined);
+  data$ = this.getMessages().pipe(
     map((newMsg) => {
       this.messages.push(newMsg);
       return this.messages;
     })
+  );
+  messages$ = this._messages$.pipe(
+    mergeMap(() => this.data$),
+    shareReplay(1)
   );
 
   constructor(private wsService: WebsocketService) {}
